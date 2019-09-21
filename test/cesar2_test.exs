@@ -1,8 +1,13 @@
 defmodule Cesar2Test do
   use ExUnit.Case
+  use PropCheck
   doctest Cesar2
 
-  test "greets the world" do
-    assert Cesar2.hello() == :world
+  property "inverse" do
+    forall {text, key} <- {binary(), integer()} do
+      text
+      |> Cesar2.encrypt(key)
+      |> Cesar2.decrypt(key) == text
+    end
   end
 end
