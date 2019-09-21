@@ -2,7 +2,9 @@ defmodule Cesar2 do
   @moduledoc """
   Documentation for Cesar2.
   """
-  @spec encrypt(binary() | [char()], integer()) :: binary() | char()
+  @spec encrypt(binary() | [char()], integer()) :: binary() | [char()]
+  def encrypt(input, key)
+
   def encrypt([], key), do: []
 
   def encrypt([head | tail], key) do
@@ -16,6 +18,7 @@ defmodule Cesar2 do
     |> to_string
   end
 
+  @spec decrypt(binary(), integer()) :: binary()
   def decrypt(string, key) do
     encrypt(string, -key)
   end
