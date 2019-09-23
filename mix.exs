@@ -6,7 +6,9 @@ defmodule Cesar2.MixProject do
       app: :cesar2,
       version: "0.1.0",
       elixir: "~> 1.9",
+      build_embedded: Mix.env == :prod,
       start_permanent: Mix.env() == :prod,
+      escript: escript_config(),
       deps: deps()
     ]
   end
@@ -25,5 +27,9 @@ defmodule Cesar2.MixProject do
       {:dialyxir,  "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},
       {:propcheck, "~> 1.1", only: [:test, :dev]}
     ]
+  end
+
+  defp escript_config do
+    [ main_module: Client ]
   end
 end
