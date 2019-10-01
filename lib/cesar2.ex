@@ -10,7 +10,7 @@ defmodule Cesar2 do
   @spec encrypt(binary() | [char()], integer()) :: binary() | [char()]
   def encrypt(input, key)
 
-  def encrypt([], key), do: []
+  def encrypt([], _key), do: []
 
   def encrypt([head | tail], key) do
     [shift(head, key) | encrypt(tail, key)]
