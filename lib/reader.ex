@@ -9,6 +9,16 @@ defmodule Reader do
     process(filename, key, &Cesar2.decrypt/2)
   end
 
+  def ml(filename) do
+    test_string = File.stream!(filename) 
+                  |> Enum.take(5) 
+                  |> Enum.map(&String.trim/1) 
+                  |> Enum.join(" ") 
+                  |> String.replace(~r/[".,]/, "")
+    key = ML.find_decrypt_key(test_string)
+    decrypt(filename, key)
+  end
+
   defp process(filename, key, f) do
     filename
     |> File.stream!
